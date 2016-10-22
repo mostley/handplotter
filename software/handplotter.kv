@@ -1,0 +1,66 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import Camera camera
+
+<MainLayout>:
+    transition: FadeTransition()
+
+    MenuScreen:
+        name: 'Menu'
+        id: menu
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 20
+            padding: 20
+
+            Button:
+                text: 'Calibrate'
+                on_press: root.current = 'Calibration'
+            Button:
+                text: 'Load Drawing'
+                disabled: True
+                on_press: root.current = 'LoadDrawing'
+            Button:
+                text: 'Run'
+                disabled: True
+                on_press: root.current = 'Processing'
+
+    CalibrationScreen:
+        name: 'Calibration'
+        id: calibration
+
+
+        canvas.before:
+        canvas:
+            Color:
+                rgba: 0, 0, 1, 1
+            Ellipse:
+                pos: (self.width/2 - 25, self.height/2 - 25)
+                size: (50, 50)
+
+        BoxLayout:
+            CalibrationCamera:
+                index: 0
+                resolution: (800, 600)
+                size: (800, 600)
+
+    LoadDrawingScreen:
+        name: 'LoadDrawing'
+        id: loadDrawing
+
+    PlaceDrawingScreen:
+        name: 'PlaceDrawing'
+        id: placeDrawing
+
+    ProcessingScreen:
+        name: 'Processing'
+        id: processing
+        cols: 2
+        Label:
+            text: 'User Name'
+        TextInput
+            multiline: False
+        Label
+            text: 'password'
+        TextInput
+            password: True
+            multiline: False
