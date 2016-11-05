@@ -38,8 +38,8 @@ class Arm(Widget):
 
     def calculateEndPoint(self):
         direction = Vector(
-            math.cos(math.radians(90 - self.angle)),
-            math.sin(math.radians(90 - self.angle)))
+            math.cos(math.radians(self.angle)),
+            math.sin(math.radians(self.angle)))
         return Vector(self.pos) + direction * self.length
 
     def update_rect(self, *args):
@@ -79,15 +79,23 @@ class HandPlotterSimulator(GridLayout):
     def updatePositions(self, *args):
         target = Vector(self.target_pos_x + 0.001, self.target_pos_y + 0.001)
 
-        L1 = 500
-        L2 = 500
+        L = 500
 
-        delta = Vector(self.origin) - target
+        delta = target - Vector(self.origin)
         c = delta.length()
         a1 = math.atan2(delta[0], delta[1])
-        a2 = self.return_angle(L1, L2, c)
+        a2 = self.return_angle(L, L, c)
 
-        self.ids.arm_base_left.angle = math.degrees(a2 + a1 - math.pi)
+        self.ids.arm_base_left.angle = 90 - math.degrees(a1 + a2)
+
+        H = target + L * Vector(math.cos((a1 - a2 + 0.621) + math.pi), math.sin((a1 - a2 + 0.621) + math.pi))
+        delta = H - Vector(self.origin)
+
+        c = delta.length()
+        a1 = math.atan2(delta[0], delta[1])
+        a2 = self.return_angle(L, L, c)
+
+        self.ids.arm_base_right.angle = 90 - math.degrees(a2 - a1)
 
         print "updatePositions", self.ids.arm_base_right.angle
 
