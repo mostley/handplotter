@@ -51,12 +51,12 @@ while True:
     if key in (ord("q"), 27): # -> "q" or Escape
         break
 
-    if key == 8: # -> Backspace
+    elif key == 8: # -> Backspace
         all_corners = numpy.empty((0,1,2 ), dtype=numpy.float32)
         all_ids = numpy.empty((0,1), dtype=numpy.int32)
         print("Points cleared.")
 
-    if key == 32: # -> Spacebar
+    elif key == 32: # -> Spacebar
         if (charuco_ids is not None) and len(charuco_ids) > 0:
             # print(charuco_corners.shape, charuco_corners.dtype, charuco_ids.shape, charuco_ids.dtype)
             # all_corners = numpy.append(all_corners, charuco_corners, axis=0)
@@ -65,7 +65,7 @@ while True:
             all_ids.append(charuco_ids)
             print("Points added. ({} ids)".format(len(all_corners)))
 
-    if key == 10:
+    elif key in (ord("c"), 10):
         if len(all_corners) > 0:
             print("Calibrating ...")
             # print(type(all_corners), all_corners.shape, all_corners.dtype, "\n",
@@ -78,6 +78,12 @@ while True:
             print(dist_coeffs)
             print(tvecs)
             print(rvecs)
+
+    elif key == ord("s"):
+        pass
+
+    elif key == ord("l"):
+        pass
 
     # 10 -> Enter
     # 32 -> Space

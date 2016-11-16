@@ -77,30 +77,49 @@ class HandPlotterSimulator(GridLayout):
         return math.acos((a * a + c * c - b * b) / (2 * a * c))
 
     def updatePositions(self, *args):
-        target = Vector(self.target_pos_x + 0.001, self.target_pos_y + 0.001)
+        target = Vector(self.target_pos_x + 0.001, self.target_pos_y + 0.001) + Vector(self.center_x, self.center_y)
 
         L = 500
 
-        delta = target - Vector(self.origin)
-        c = delta.length()
-        a1 = math.atan2(delta[0], delta[1])
+        delta_r = target - Vector(self.origin)
+        c = delta_r.length()
+        a1 = math.atan2(delta_r[0], delta_r[1])
         a2 = self.return_angle(L, L, c)
 
-        self.ids.arm_base_left.angle = 90 - math.degrees(a1 + a2)
+        self.ids.arm_base_left.angle = 90 - math.degrees(a1 - a2)
 
-        H = target + L * Vector(math.cos((a1 - a2 + 0.621) + math.pi), math.sin((a1 - a2 + 0.621) + math.pi))
-        delta = H - Vector(self.origin)
+        ### Debug output
+        # print "[updatePositions:1] l_angle: {l_angle:.2f}; delta_r: [{delta_r[0]:.2f}, {delta_r[1]:.2f}] ({delta_r_len:.2f}); a1: {a1:.2f}; a2: {a2:.2f}".format(\
+        #     l_angle=self.ids.arm_base_left.angle, 
+        #     delta_r_len=c,
+        #     delta_r=delta_r,
+        #     a1=math.degrees(a1),
+        #     a2=math.degrees(a2)
+        # )
 
-        c = delta.length()
-        a1 = math.atan2(delta[0], delta[1])
-        a2 = self.return_angle(L, L, c)
+        # We might need this if we use a setup with unequal arm length ... (not sure if this code works)
+        # H = target + L * Vector(math.cos((a1 - a2 + 0.621) + math.pi), math.sin((a1 - a2 + 0.621) + math.pi))
+        # delta_l = H - Vector(self.origin)
 
-        self.ids.arm_base_right.angle = 90 - math.degrees(a2 - a1)
+        # c = delta_l.length()
+        # a1 = math.atan2(delta_l[0], delta_l[1])
+        # a2 = self.return_angle(L, L, c)
 
-        print "updatePositions", self.ids.arm_base_right.angle
+        self.ids.arm_base_right.angle = 90 - math.degrees(a1 + a2)
+
+        ### Debug output
+        # print "[updatePositions:2] r_angle: {r_angle:.2f}; delta_l: [{delta_l[0]:.2f}, {delta_l[1]:.2f}] ({delta_l_len:.2f}); a1: {a1:.2f}; a2: {a2:.2f}".format(\
+        #     r_angle=self.ids.arm_base_right.angle, 
+        #     delta_l_len=c,
+        #     delta_l=delta_l,
+        #     a1=math.degrees(a1),
+        #     a2=math.degrees(a2)
+        # )
 
         self.ids.arm_end_left.pos = self.ids.arm_base_left.lastEndpoint
+        self.ids.arm_end_left.angle = self.ids.arm_base_right.angle
         self.ids.arm_end_right.pos = self.ids.arm_base_right.lastEndpoint
+        self.ids.arm_end_right.angle = self.ids.arm_base_left.angle
 
 
 class SimulatorApp(App):
