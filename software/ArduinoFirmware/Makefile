@@ -14,21 +14,23 @@ PRINT=@echo $$'\e[1;34mBuilding $<\e[0m'
 
 all: clean all-tests
 
-all-tests: test/vector test/orientation test/pathsegment test/kinematicresult test/ik-solver
+all-tests: bin/vector-test bin/orientation-test bin/pathsegment-test bin/kinematicresult-test bin/ik-solver-test
 
 clean:
-	@rm -f vector.o test/vector orientation.o test/orientation pathsegment.o test/pathsegment kinematicresult.o test/kinematicresult ik-solver.o test/ik-solver
+	@rm -f bin/* *.o
 
+ensure-bin-folder:
+	@mkdir -p bin
 
 ### VECTOR TEST ################################################################
 
 vector.o: vector.cpp
 	@g++ -g -c vector.cpp -o vector.o
 
-test/vector: vector.o test/vector-test.cpp
-	@g++ -I${ROOT_DIR} -o test/vector test/vector-test.cpp
-	@chmod +x test/vector
-	@test/vector || $(TESTFAIL)
+bin/vector-test: vector.o test/vector-test.cpp ensure-bin-folder
+	@g++ -I${ROOT_DIR} -o bin/vector-test test/vector-test.cpp
+	@chmod +x bin/vector-test
+	@bin/vector-test || $(TESTFAIL)
 	$(TESTSUCCESS)
 
 
@@ -37,10 +39,10 @@ test/vector: vector.o test/vector-test.cpp
 orientation.o: orientation.cpp
 	@g++ -g -c orientation.cpp -o orientation.o
 
-test/orientation: orientation.o test/orientation-test.cpp
-	@g++ -I${ROOT_DIR} -o test/orientation test/orientation-test.cpp
-	@chmod +x test/orientation
-	@test/orientation || $(TESTFAIL)
+bin/orientation-test: orientation.o test/orientation-test.cpp ensure-bin-folder
+	@g++ -I${ROOT_DIR} -o bin/orientation-test test/orientation-test.cpp
+	@chmod +x bin/orientation-test
+	@bin/orientation-test || $(TESTFAIL)
 	$(TESTSUCCESS)
 
 
@@ -49,10 +51,10 @@ test/orientation: orientation.o test/orientation-test.cpp
 pathsegment.o: pathsegment.cpp
 	@g++ -g -c pathsegment.cpp -o pathsegment.o
 
-test/pathsegment: pathsegment.o test/pathsegment-test.cpp
-	@g++ -I${ROOT_DIR} -o test/pathsegment test/pathsegment-test.cpp
-	@chmod +x test/pathsegment
-	@test/pathsegment || $(TESTFAIL)
+bin/pathsegment-test: pathsegment.o test/pathsegment-test.cpp ensure-bin-folder
+	@g++ -I${ROOT_DIR} -o bin/pathsegment-test test/pathsegment-test.cpp
+	@chmod +x bin/pathsegment-test
+	@bin/pathsegment-test || $(TESTFAIL)
 	$(TESTSUCCESS)
 
 
@@ -61,10 +63,10 @@ test/pathsegment: pathsegment.o test/pathsegment-test.cpp
 kinematicresult.o: kinematicresult.cpp
 	@g++ -g -c kinematicresult.cpp -o kinematicresult.o
 
-test/kinematicresult: kinematicresult.o test/kinematicresult-test.cpp
-	@g++ -I${ROOT_DIR} -o test/kinematicresult test/kinematicresult-test.cpp
-	@chmod +x test/kinematicresult
-	@test/kinematicresult || $(TESTFAIL)
+bin/kinematicresult-test: kinematicresult.o test/kinematicresult-test.cpp ensure-bin-folder
+	@g++ -I${ROOT_DIR} -o bin/kinematicresult-test test/kinematicresult-test.cpp
+	@chmod +x bin/kinematicresult-test
+	@bin/kinematicresult-test || $(TESTFAIL)
 	$(TESTSUCCESS)
 
 
@@ -73,8 +75,8 @@ test/kinematicresult: kinematicresult.o test/kinematicresult-test.cpp
 ik-solver.o: ik-solver.cpp
 	@g++ -g -c ik-solver.cpp -o ik-solver.o
 
-test/ik-solver: ik-solver.o test/ik-solver-test.cpp
-	@g++ -I${ROOT_DIR} -o test/ik-solver test/ik-solver-test.cpp
-	@chmod +x test/ik-solver
-	@test/ik-solver || $(TESTFAIL)
+bin/ik-solver-test: ik-solver.o test/ik-solver-test.cpp ensure-bin-folder
+	@g++ -I${ROOT_DIR} -o bin/ik-solver-test test/ik-solver-test.cpp
+	@chmod +x bin/ik-solver-test
+	@bin/ik-solver-test || $(TESTFAIL)
 	$(TESTSUCCESS)

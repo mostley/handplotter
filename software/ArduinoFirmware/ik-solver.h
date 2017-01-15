@@ -18,11 +18,10 @@ private:
 
 public:
 
-  IKSolver(Vector center, double armLength) {
+  IKSolver(Vector origin, Vector center, double armLength) {
+    this->origin = origin;
     this->center = center;
     this->armLength = armLength;
-
-    this->origin = Vector(0, 0);
   }
 
   KinematicResult solve(Vector newPenOffset);
