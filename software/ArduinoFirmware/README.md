@@ -12,6 +12,10 @@ Takes the fast orientation delta from the mouse sensors and the slower absolute 
 
 Calculates the new pen offset from the previous and current absolute orientation and the current path.
 
+# InverseKinematicSolver
+
+solves the IK.
+
 # MotorController
 
-Translates the pen offset into motor commands by solving the IK.
+Moves the motors to their intended positions.

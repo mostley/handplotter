@@ -1,3 +1,5 @@
+#include <math.h>
+
 #ifndef VECTOR_CPP
 #define VECTOR_CPP
 
@@ -27,6 +29,10 @@ public:
 
   Vector multiply(double other) {
     return Vector(this->x * other, this->y * other);
+  }
+
+  double length() {
+    return sqrt(this->x * this->x + this->y * this->y);
   }
 
   Vector operator+(const Vector& b) {

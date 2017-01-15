@@ -1,5 +1,4 @@
 #include "hostcommunicator.h"
-#include "hostcommand.cpp"
 
 HostCommunicator::HostCommunicator() {
   Serial.begin(9600);

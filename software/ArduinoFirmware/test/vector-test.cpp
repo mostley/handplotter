@@ -76,6 +76,21 @@ int test_multiplication() {
   return 0;
 }
 
+int test_length() {
+  printf("=== Testing Vector length calculation ===\n");
+
+  Vector a = Vector(3, 4);
+  double c = a.length();
+
+  if (c != 5) {
+    printf("Length calculation failed.\nExpected the resulting Vector to be 5 ");
+    printf("instead got %f\n", c);
+    return 1;
+  }
+
+  return 0;
+}
+
 int main() {
   int error;
 

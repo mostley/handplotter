@@ -1,4 +1,5 @@
 #include "orientation.cpp"
+#include "hostcommand.cpp"
 
 #ifndef HOST_COMMUNICATOR_H
 #define HOST_COMMUNICATOR_H

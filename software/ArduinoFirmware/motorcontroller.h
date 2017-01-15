@@ -6,13 +6,13 @@
 class MotorController {
 private:
 
-  Vector currentPenOffset;
+  Vector newTargetPosition;
 
 public:
 
   MotorController(double stepsPerMM);
 
-  void updatePenOffset(Vector newPenOffset);
+  void updateOrientation(Vector newTargetPosition);
 
   void update(double deltaTime);
 }
