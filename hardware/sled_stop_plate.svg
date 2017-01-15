@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="sled_stop_plate.svg">
+  <defs
+     id="defs4">
+    <marker
+       style="overflow:visible"
+       refY="0.0"
+       refX="0.0"
+       orient="auto"
+       id="DistanceX">
+      <path
+         id="path3426"
+         style="stroke:#000000; stroke-width:0.5"
+         d="M 3,-3 L -3,3 M 0,-5 L  0,5" />
+    </marker>
+    <pattern
+       y="0"
+       x="0"
+       width="8"
+       patternUnits="userSpaceOnUse"
+       id="Hatch"
+       height="8">
+      <path
+         id="path3429"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square"
+         d="M8 4 l-4,4" />
+      <path
+         id="path3431"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square"
+         d="M6 2 l-4,4" />
+      <path
+         id="path3433"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square"
+         d="M4 0 l-4,4" />
+    </pattern>
+    <symbol
+       id="*MODEL_SPACE" />
+    <symbol
+       id="*PAPER_SPACE" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="257.29948"
+     inkscape:cy="827.26216"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1151"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3488"
+       transform="translate(1.5152288,-10.606602)">
+      <path
+         id="path3439"
+         style="fill:none;stroke:#ff0000"
+         d="m 358.12888,265.46528 a 15.944885,15.944885 0 1 0 -31.88977,0 15.944885,15.944885 0 0 0 31.88977,0 z"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3441"
+         style="fill:none;stroke:#ff0000"
+         d="m 205.60179,56.41017 a 14.17323,14.17323 0 1 0 -28.34646,0 14.17323,14.17323 0 0 0 28.34646,0 z"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3443"
+         style="fill:none;stroke:#ff0000"
+         d="m 54.84635,265.46528 a 14.173228,14.173228 0 1 0 -28.34645,0 14.173228,14.173228 0 1 0 28.34645,0 z"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3445"
+         style="fill:none;stroke:#000000"
+         d="m 68.18035,287.80038 a 35.433071,35.433071 0 1 1 -35.2529,-56.9112 158.76054,158.76054 0 0 0 123.2482,-170.91038 35.433071,35.433071 0 1 1 70.50581,0 158.76054,158.76054 0 0 0 123.24835,170.91041 35.433071,35.433071 0 1 1 -35.25317,56.91097 158.76054,158.76054 0 0 0 -246.49629,2e-4 z"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>
