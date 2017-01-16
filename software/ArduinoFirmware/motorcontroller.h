@@ -1,4 +1,7 @@
-#include "vector.h"
+#include "vector.cpp"
+#include "kinematicresult.cpp"
+#include <cmath>
+#include "StepperDriver/BasicStepperDriver.h"
 
 #ifndef MOTOR_CONTROLLER_H
 #define MOTOR_CONTROLLER_H
@@ -6,15 +9,18 @@
 class MotorController {
 private:
 
-  Vector newTargetPosition;
+  KinematicResult currentPosition;
+  KinematicResult newTargetPosition;
+  BasicStepperDriver stepperLeft;
+  BasicStepperDriver stepperRight;
 
 public:
 
-  MotorController(double stepsPerMM);
+  MotorController(BasicStepperDriver stepperLeft, BasicStepperDriver stepperRight);
 
-  void updateOrientation(Vector newTargetPosition);
+  void updateTargetPosition(KinematicResult newTargetPosition);
 
   void update(double deltaTime);
-}
+};
 
 #endif  /* MOTOR_CONTROLLER_H */

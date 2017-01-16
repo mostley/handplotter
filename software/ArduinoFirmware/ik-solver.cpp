@@ -1,5 +1,5 @@
 #include "ik-solver.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 /* cosine rule for angle between c and a */
 double return_angle(double a, double b, double c) {

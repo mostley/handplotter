@@ -14,10 +14,10 @@ PRINT=@echo $$'\e[1;34mBuilding $<\e[0m'
 
 all: clean all-tests
 
-all-tests: bin/vector-test bin/orientation-test bin/pathsegment-test bin/kinematicresult-test bin/ik-solver-test
+all-tests: bin/vector-test bin/orientation-test bin/pathsegment-test bin/kinematicresult-test bin/ik-solver-test bin/motorcontroller-test
 
 clean:
-	@rm -f bin/* *.o
+	@rm -rf bin/* *.o
 
 ensure-bin-folder:
 	@mkdir -p bin
@@ -58,7 +58,7 @@ bin/pathsegment-test: pathsegment.o test/pathsegment-test.cpp ensure-bin-folder
 	$(TESTSUCCESS)
 
 
-### KINEMATICRESULT TEST ###########################################################
+### KINEMATICRESULT TEST #######################################################
 
 kinematicresult.o: kinematicresult.cpp
 	@g++ -g -c kinematicresult.cpp -o kinematicresult.o
@@ -70,7 +70,7 @@ bin/kinematicresult-test: kinematicresult.o test/kinematicresult-test.cpp ensure
 	$(TESTSUCCESS)
 
 
-### IKSolver TEST ###########################################################
+### IKSolver TEST ##############################################################
 
 ik-solver.o: ik-solver.cpp
 	@g++ -g -c ik-solver.cpp -o ik-solver.o
@@ -79,4 +79,16 @@ bin/ik-solver-test: ik-solver.o test/ik-solver-test.cpp ensure-bin-folder
 	@g++ -I${ROOT_DIR} -o bin/ik-solver-test test/ik-solver-test.cpp
 	@chmod +x bin/ik-solver-test
 	@bin/ik-solver-test || $(TESTFAIL)
+	$(TESTSUCCESS)
+
+
+### MOTORCONTROLLER TEST #######################################################
+
+motorcontroller.o: motorcontroller.cpp
+	@g++ -std=c++11 -g -I${ROOT_DIR}/test/mocks -c motorcontroller.cpp -o motorcontroller.o
+
+bin/motorcontroller-test: motorcontroller.o test/motorcontroller-test.cpp ensure-bin-folder
+	@g++ -std=c++11 -g -I${ROOT_DIR}/test/mocks -I${ROOT_DIR} -o bin/motorcontroller-test test/motorcontroller-test.cpp
+	@chmod +x bin/motorcontroller-test
+	@bin/motorcontroller-test || $(TESTFAIL)
 	$(TESTSUCCESS)
