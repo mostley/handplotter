@@ -20,8 +20,17 @@ public:
   }
 
   void translate() {}
+
   void rotate() {}
 
+  double length() {
+    return (p2 - p1).length();
+  }
+
+  Vector getNormalizedDirectionVector() {
+    Vector direction = p2 - p1;
+    return direction / direction.length();
+  }
 };
 
 #endif  /* PATH_SEGMENT_CPP */

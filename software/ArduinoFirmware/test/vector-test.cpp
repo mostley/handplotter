@@ -76,6 +76,22 @@ int test_multiplication() {
   return 0;
 }
 
+int test_division() {
+  printf("=== Testing Vector Division ===\n");
+
+  Vector a = Vector(4, 10);
+  double b = 2;
+  Vector c = a / b;
+
+  if (c.x != 2 || c.y != 5) {
+    printf("Division with double failed.\nExpected the resulting Vector to be [2, 5] ");
+    printf("instead got [%f, %f]\n", c.x, c.y);
+    return 1;
+  }
+
+  return 0;
+}
+
 int test_length() {
   printf("=== Testing Vector length calculation ===\n");
 
@@ -104,6 +120,9 @@ int main() {
   if (error > 0) { return error; }
 
   error = test_multiplication();
+  if (error > 0) { return error; }
+
+  error = test_division();
   if (error > 0) { return error; }
 
   return 0;

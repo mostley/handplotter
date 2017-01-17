@@ -31,6 +31,10 @@ public:
     return Vector(this->x * other, this->y * other);
   }
 
+  Vector divide(double other) {
+    return Vector(this->x / other, this->y / other);
+  }
+
   double length() {
     return sqrt(this->x * this->x + this->y * this->y);
   }
@@ -45,6 +49,10 @@ public:
 
   Vector operator*(double b) {
     return this->multiply(b);
+  }
+
+  Vector operator/(double b) {
+    return this->divide(b);
   }
 };
 
