@@ -1,4 +1,5 @@
 #include "vector.cpp"
+#include "Orientation.cpp"
 
 #ifndef PATH_SEGMENT_CPP
 #define PATH_SEGMENT_CPP
@@ -30,6 +31,14 @@ public:
   Vector getNormalizedDirectionVector() {
     Vector direction = p2 - p1;
     return direction / direction.length();
+  }
+
+  PathSegment operator*(Orientation orientation) {
+    Vector p1 = orientation.position - this->p1;
+    Vector p2 = orientation.position - this->p2;
+    p1.rotate(orientation.rotation);
+    p2.rotate(orientation.rotation);
+    return PathSegment(p1, p2);
   }
 };
 

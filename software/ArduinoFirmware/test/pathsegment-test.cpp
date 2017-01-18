@@ -47,7 +47,16 @@ int test_normdir() {
   Vector dir = a.getNormalizedDirectionVector();
 
   if (dir.x != 1 || dir.y != 0) {
-    printf("normalized direction vector test failed.\nExpected the resulting Vector to be [1,1] ");
+    printf("normalized direction vector test failed.\nExpected the resulting Vector to be [1,0] ");
+    printf("instead got [%f, %f]\n", dir.x, dir.y);
+    return 1;
+  }
+
+  a = PathSegment(Vector(0, 0), Vector(0,5));
+  dir = a.getNormalizedDirectionVector();
+
+  if (dir.x != 0 || dir.y != 1) {
+    printf("normalized direction vector test failed.\nExpected the resulting Vector to be [0,1] ");
     printf("instead got [%f, %f]\n", dir.x, dir.y);
     return 1;
   }

@@ -11,29 +11,30 @@ void MotionCoordinator::updateOrientation(Orientation newOrientation) {
   this->currentOrientation = newOrientation;
 }
 
-findClosestPathSegment(Vector position) {
+PathSegment MotionCoordinator::findClosestPathSegment() {
   return PathSegment(0, 0);
 }
 
+PathSegment MotionCoordinator::makePathSegmentRelative(PathSegment pathSegment) {
+  return pathSegment * this->currentOrientation;
+}
+
 Vector MotionCoordinator::calculatePenOffset(double deltaTime) {
-  if (this->currentPathSegment == NULL) {
-    this->currentPathSegment = this->findClosestPathSegment(this->currentOrientation.position);
+  if (this->currentRelativePathSegment == NULL) {
+    this->currentRelativePathSegment = this->findClosestPathSegment(this->currentOrientation);
   }
 
   double distanceToTravel = this->mmPerSecond * deltaTime;
 
-  double segmentLength = this->currentPathSegment.length();
-  double semgentLengthLeft = (1 - this->currentPathSegmentProgress) * segmentLength;
-  double lengthToTravelOnSegment = semgentLengthLeft;
-  if (distanceToTravel > semgentLengthLeft) {
-    // go to another path position directly?
-    // get next path and find point to travel to on that, hopefully minor error in movement
-  } else if (semgentLengthLeft < distanceToTravel) {
-    lengthToTravelOnSegment = distanceToTravel;
+  double segmentLength = this->currentRelativePathSegment.length();
+  Vector pathTarget = this->currentRelativePathSegment.p2;
+  if (segmentLength < distanceToTravel) {
+    double lengthToTravelOnSegment = semgentLengthLeft;
+    Vector direction = this->currentRelativePathSegment.getNormalizedDirectionVector();
+    pathTarget = this->currentRelativePathSegment.p1 + direction * (this->currentRelativePathSegmentProgress * lengthToTravelOnSegment);
   }
 
-  Vector direction = this->currentPathSegment.getNormalizedDirectionVector()
-  Vector position = this->currentPathSegment.p1 + direction * (this->currentPathSegmentProgress * lengthToTravelOnSegment);
+  Vector position = this->currentOrientation.position - pathTarget;
 
   return position;
 }

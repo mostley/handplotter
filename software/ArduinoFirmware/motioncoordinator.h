@@ -8,7 +8,7 @@ private:
   Orientation currentOrientation;
   PathSegment[] pathSegmentList;
   PathSegment* currentPathSegment;
-  double currentPathSegmentProgress;
+  double currentRelativePathSegment;
   double mmPerSecond;
 
 public:
@@ -17,6 +17,10 @@ public:
   void updateOrientation(Orientation newOrientation);
 
   Vector calculatePenOffset(double deltaTime);
+
+  PathSegment findClosestPathSegment();
+
+  PathSegment makePathSegmentRelative(PathSegment pathSegment);
 };
 
 #endif /* MOTION_COORDINATOR_H */

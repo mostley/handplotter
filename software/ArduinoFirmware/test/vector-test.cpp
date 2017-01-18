@@ -1,6 +1,13 @@
 #include <stdio.h>
+#include <cmath>
 
 #include "vector.cpp"
+
+const double PRECISION = 0.01;
+
+bool compare(double a, double b) {
+  return std::abs(a - b) > PRECISION;
+}
 
 int test_retention() {
   printf("=== Testing Vector retention ===\n");
@@ -107,6 +114,29 @@ int test_length() {
   return 0;
 }
 
+int test_rotation() {
+  printf("=== Testing Vector Division ===\n");
+
+  Vector a = Vector(1, 0);
+  a.rotate(90);
+
+  if (compare(a.x, 0) || compare(a.y, 1.0)) {
+    printf("Division with double failed.\nExpected the resulting Vector to be [0.0, 1.0] ");
+    printf("instead got [%f, %f]\n", a.x, a.y);
+    return 1;
+  }
+
+  a.rotate(-45);
+
+  if (compare(a.x, 0.7) || compare(a.y, 0.7)) {
+    printf("Division with double failed.\nExpected the resulting Vector to be [0.7, 0.7] ");
+    printf("instead got [%f, %f]\n", a.x, a.y);
+    return 1;
+  }
+
+  return 0;
+}
+
 int main() {
   int error;
 
@@ -123,6 +153,9 @@ int main() {
   if (error > 0) { return error; }
 
   error = test_division();
+  if (error > 0) { return error; }
+
+  error = test_rotation();
   if (error > 0) { return error; }
 
   return 0;
