@@ -51,7 +51,7 @@ bin/orientation-test: orientation.o test/orientation-test.cpp ensure-bin-folder
 pathsegment.o: pathsegment.cpp
 	@g++ -g -c pathsegment.cpp -o pathsegment.o
 
-bin/pathsegment-test: pathsegment.o test/pathsegment-test.cpp ensure-bin-folder
+bin/pathsegment-test: pathsegment.o orientation.o test/pathsegment-test.cpp ensure-bin-folder
 	@g++ -I${ROOT_DIR} -o bin/pathsegment-test test/pathsegment-test.cpp
 	@chmod +x bin/pathsegment-test
 	@bin/pathsegment-test || $(TESTFAIL)
