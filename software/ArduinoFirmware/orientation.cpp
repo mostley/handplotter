@@ -17,6 +17,10 @@ public:
     this->position = position;
     this->rotation = rotation;
   }
+
+  Orientation operator+(const Orientation& b) {
+    return Orientat(this->position + b.position, this->rotation + b.rotation);
+  }
 };
 
 #endif  /* ORIENTATION_CPP */

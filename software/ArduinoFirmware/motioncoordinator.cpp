@@ -34,7 +34,5 @@ Vector MotionCoordinator::calculatePenOffset(double deltaTime) {
     pathTarget = this->currentRelativePathSegment.p1 + direction * (this->currentRelativePathSegmentProgress * lengthToTravelOnSegment);
   }
 
-  Vector position = this->currentOrientation.position - pathTarget;
-
-  return position;
+  return pathTarget;
 }
