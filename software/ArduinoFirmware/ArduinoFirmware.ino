@@ -10,8 +10,6 @@ MotorController motorController;
 MotionCoordinator motionCoordinator;
 SensorFusor sensorFusor;
 
-double STEPS_PER_MM = 10; //TODO calculate steps per MM
-
 bool intialOrientationSetup = false
 Orientation previousAbsoluteOrientation;
 
@@ -19,12 +17,14 @@ void setup() {
   commandListener = new CommandListener();
   sensorFusor = new SensorFusor();
   motionCoordinator = new MotionCoordinator();
-  motorController = new MotorController(STEPS_PER_MM);
+  DRV8825 stepperLeft(200, 3, 4);
+  DRV8825 stepperRight(200, 5, 6);
+  motorController = new MotorController(stepperLeft, stepperRight);
 }
 
 void loop() {
 
-  HostCommand[] hostCommands = commandListener.getCommandQueue();
+  /*HostCommand[] hostCommands = commandListener.getCommandQueue();
 
   int hostCommandCount = sizeof(hostCommands)/sizeof(*hostCommands);
   for (int i=0; i<hostCommandCount; i++) {
@@ -46,6 +46,9 @@ void loop() {
   }
 
   previousAbsoluteOrientation = currentAbsoluteOrientation;
+  */
+
+  motorController.update();
 }
 
 void handleHostCommand(HostCommand command) {
@@ -58,5 +61,5 @@ void handleHostCommand(HostCommand command) {
 }
 
 void main() {
-  
+
 }
