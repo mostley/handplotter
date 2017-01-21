@@ -7,6 +7,5 @@ HostCommunicator::HostCommunicator() {
 }
 
 HostCommand* HostCommunicator::getCommandQueue() {
-  HostCommand result[0];
-  return result;
+  return NULL;
 }

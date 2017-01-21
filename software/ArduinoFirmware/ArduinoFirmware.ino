@@ -4,32 +4,58 @@
 #include "sensorfusor.h"
 #include "motioncoordinator.h"
 #include "motorcontroller.h"
-#include "StepperDriver/DRV8825.h"
+#include "ik-solver.h"
+#include "DRV8825.h"
 
 
 DRV8825 stepperLeft = DRV8825(400, 3, 4);
 DRV8825 stepperRight = DRV8825(400, 5, 6);
-int angle = 0;
 
-// CommandListener commandListener;
+const double MM_PER_SECOND = 1;
+const double ARM_LENGTH = 40;
+Vector centerPoint = Vector(0, 100);
+
+// CommandListener commandListener = CommandListener();
 MotorController motorController = MotorController(stepperLeft, stepperRight);
-// MotionCoordinator motionCoordinator;
-// SensorFusor sensorFusor;
+//MotionCoordinator motionCoordinator = MotionCoordinator(MM_PER_SECOND);
+IKSolver iksolver = IKSolver(Vector(0,0), centerPoint, ARM_LENGTH);
+// SensorFusor sensorFusor = SensorFusor();
 
 bool intialOrientationSetup = false;
 Orientation previousAbsoluteOrientation;
 
 void setup() {
-  //commandListener = CommandListener();
-  //sensorFusor = SensorFusor();
-  //motionCoordinator = MotionCoordinator();
 }
+
 int step_delay = 1000;
 
 void loop() {
-//  stepperRight.rotate(-angle);
-//  stepperLeft.rotate(angle);
-  motorController.updateTargetPosition(KinematicResult(45, 0));
+  KinematicResult targetPosition;
+  
+  targetPosition = iksolver.solve(Vector(10, 0));
+  motorController.updateTargetPosition(targetPosition);
+  motorController.update();
+  delay(step_delay);
+  
+  
+  targetPosition = iksolver.solve(Vector(10, 10));
+  motorController.updateTargetPosition(targetPosition);
+  motorController.update();
+  delay(step_delay);
+  
+  
+  targetPosition = iksolver.solve(Vector(0, 10));
+  motorController.updateTargetPosition(targetPosition);
+  motorController.update();
+  delay(step_delay);
+  
+  
+  targetPosition = iksolver.solve(Vector(10, 0));
+  motorController.updateTargetPosition(targetPosition);
+  motorController.update();
+  delay(step_delay);
+  
+  /*motorController.updateTargetPosition(KinematicResult(45, 0));
   motorController.update(0);
   delay(step_delay);
   motorController.updateTargetPosition(KinematicResult(45, 45));
@@ -40,12 +66,7 @@ void loop() {
   delay(step_delay);
   motorController.updateTargetPosition(KinematicResult(0, 0));
   motorController.update(0);
-  delay(step_delay);
-  
-//  digitalWrite(13, HIGH);
-//  delay(1000);
-//  digitalWrite(13, LOW);
-//  delay(1000);
+  delay(step_delay);*/
 
 //  HostCommand[] hostCommands = commandListener.getCommandQueue();
 //

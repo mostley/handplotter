@@ -20,7 +20,7 @@ public:
 
   void updateTargetPosition(KinematicResult newTargetPosition);
 
-  void update(double deltaTime);
+  void update();
 };
 
 #endif  /* MOTOR_CONTROLLER_H */
