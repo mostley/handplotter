@@ -23,4 +23,5 @@ void MotorController::update(double deltaTime) {
 
   this->stepperLeft.rotate((int)leftAngleDelta);
   this->stepperRight.rotate((int)rightAngleDelta);
+  this->currentPosition = this->newTargetPosition;
 }

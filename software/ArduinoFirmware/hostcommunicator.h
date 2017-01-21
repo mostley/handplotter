@@ -9,7 +9,7 @@ public:
 
   HostCommunicator();
 
-  HostCommand[] getCommandQueue();
-}
+  HostCommand* getCommandQueue();
+};
 
 #endif  /* HOST_COMMUNICATOR_H */

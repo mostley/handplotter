@@ -17,6 +17,6 @@ public:
   Orientation readOrientationChange();
   Orientation calculateNewAbsoluteOrientation();
   void setAbsoluteOrientation(Orientation newAbsoluteOrientation);
-}
+};
 
 #endif  /* SENSOR_FUSOR_H */

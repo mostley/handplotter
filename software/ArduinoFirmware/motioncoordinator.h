@@ -1,4 +1,5 @@
 #include "orientation.cpp"
+#include "pathsegment.cpp"
 
 #ifndef MOTION_COORDINATOR_H
 #define MOTION_COORDINATOR_H
@@ -6,7 +7,7 @@
 class MotionCoordinator {
 private:
   Orientation currentOrientation;
-  PathSegment[] pathSegmentList;
+  PathSegment pathSegmentList[5];
   PathSegment* currentPathSegment;
   double currentRelativePathSegment;
   double mmPerSecond;

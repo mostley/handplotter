@@ -19,7 +19,7 @@ public:
   }
 
   Orientation operator+(const Orientation& b) {
-    return Orientat(this->position + b.position, this->rotation + b.rotation);
+    return Orientation(this->position + b.position, this->rotation + b.rotation);
   }
 };
 

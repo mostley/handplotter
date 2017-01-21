@@ -1,7 +1,7 @@
 #include "vector.cpp"
 #include "kinematicresult.cpp"
 #include <cmath>
-#include "StepperDriver/BasicStepperDriver.h"
+#include "BasicStepperDriver.h"
 
 #ifndef MOTOR_CONTROLLER_H
 #define MOTOR_CONTROLLER_H
