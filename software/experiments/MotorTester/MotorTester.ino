@@ -9,10 +9,10 @@ int enablePin = 15;
 
 void setup() {
   //stepperLeft.setRPM(120);
-  //stepperLeft.setMicrostep(DRV8825::MAX_MICROSTEP);
+  stepperLeft.setMicrostep(16);
 
   //stepperRight.setRPM(120);
-  //stepperRight.setMicrostep(DRV8825::MAX_MICROSTEP);
+  stepperRight.setMicrostep(16);
 
   pinMode(13, OUTPUT);
   pinMode(enablePin, OUTPUT);
@@ -20,8 +20,8 @@ void setup() {
 }
 
 void loop() {
-  stepperLeft.rotate(angle);
   stepperRight.rotate(-angle);
+  stepperLeft.rotate(angle);
   
   if (angle > 0) {
     angle = -90;
