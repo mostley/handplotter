@@ -3,11 +3,11 @@
 
 #ifndef HOST_COMMAND_CPP
 #define HOST_COMMAND_CPP
-//
-//int ERROR = 0;
-//int HOST_COMMAND_ORIENTATION_UPDATE = 1;
-//int HOST_COMMAND_PATH_UPDATE = 2;
-//int HOST_COMMAND_PENSTATE_UPDATE = 3;
+
+const int ERROR = 0;
+const int HOST_COMMAND_ORIENTATION_UPDATE = 1;
+const int HOST_COMMAND_PATH_UPDATE = 2;
+const int HOST_COMMAND_PENSTATE_UPDATE = 3;
 
 struct HostCommand {
 
@@ -22,7 +22,7 @@ public:
   int penState;
 
   HostCommand(double x, double y, double z, double w) {
-//    this->type = HOST_COMMAND_ORIENTATION_UPDATE;
+    this->type = HOST_COMMAND_ORIENTATION_UPDATE;
     this->x = x;
     this->y = y;
     this->z = z;
