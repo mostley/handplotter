@@ -1,6 +1,5 @@
 #include "vector.cpp"
 #include "kinematicresult.cpp"
-#include <cmath>
 #include "BasicStepperDriver.h"
 
 #ifndef MOTOR_CONTROLLER_H
