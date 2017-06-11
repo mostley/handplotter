@@ -11,7 +11,7 @@ from kivy.uix.textinput import TextInput
 
 from kivy.properties import NumericProperty
 
-from camerawidget import Camera
+from ARSurveyor.camerawidget import Camera
 
 import numpy as np
 
@@ -52,6 +52,8 @@ class CalibrationCamera(Camera):
 
 
 class HandPlotterApp(App):
+    kv_file = "handplotter"
+    
     def build(self):
         return MainLayout()
 
