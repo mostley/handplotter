@@ -1,0 +1,21 @@
+#:kivy
+
+<MenuScreen>:
+    name: 'Menu'
+    id: menu
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        padding: 20
+
+        Button:
+            text: 'Calibrate'
+            on_press: root.current = 'Calibration'
+        Button:
+            text: 'Load Drawing'
+            disabled: True
+            on_press: root.current = 'LoadDrawing'
+        Button:
+            text: 'Run'
+            disabled: True
+            on_press: root.current = 'Processing'

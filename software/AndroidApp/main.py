@@ -2,6 +2,7 @@ import kivy
 kivy.require('1.9.1')
 
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -20,9 +21,8 @@ try:
 except ImportError:
     import cv2
 
-class MainLayout(ScreenManager): pass
-
-class MenuScreen(Screen): pass
+class MenuScreen(Screen):
+    kv_file = "menuscreen"
 
 class CalibrationScreen(Screen): pass
 
@@ -55,7 +55,9 @@ class HandPlotterApp(App):
     kv_file = "handplotter"
     
     def build(self):
-        return MainLayout()
+        sm = ScreenManager()
+        sm.add_widget(MenuScreen(name='menu'))
+        return MenuScreen()
 
 
 if __name__ == '__main__':
