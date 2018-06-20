@@ -2,6 +2,7 @@ package com.handplotter.shdev.handplotter
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -157,10 +158,13 @@ class SessionActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewLi
 
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame?): Mat {
         rgba = inputFrame!!.rgba();
-        // Rotate mRgba 90 degrees
-        Core.transpose(rgba, rgbaT);
-        Imgproc.resize(rgbaT, rgbaF, rgbaF!!.size(), 0.0,0.0, 0);
-        Core.flip(rgbaF, rgba, 1 );
+
+        if (resources.configuration.orientation == ORIENTATION_PORTRAIT) {
+            // Rotate rgba 90 degrees
+            Core.transpose(rgba, rgbaT);
+            Imgproc.resize(rgbaT, rgbaF, rgbaF!!.size(), 0.0, 0.0, 0);
+            Core.flip(rgbaF, rgba, 1);
+        }
 
         return rgba!!;
     }
