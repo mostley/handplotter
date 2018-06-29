@@ -8,8 +8,8 @@ time.sleep(0.25)
 dictionary = aruco.getPredefinedDictionary(aruco.DICT_6X6_250)
 board = aruco.CharucoBoard_create(
                 squaresX = 5,
-                squaresY = 7,
-                squareLength = 0.04,
+                squaresY = 4,
+                squareLength = 0.034,
                 markerLength = 0.02,
                 dictionary = dictionary)
 

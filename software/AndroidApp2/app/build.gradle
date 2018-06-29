@@ -8,7 +8,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.handplotter.shdev.handplotter"
-        minSdkVersion 24
+        minSdkVersion 25
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -30,6 +30,7 @@ android {
             path "CMakeLists.txt"
         }
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -43,5 +44,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:design:27.1.1'
     implementation files('libs/androidsvg-1.2.1.jar')
-    implementation project(':openCVLibrary341')
+    implementation project(':openCVLibrary340dev')
 }

@@ -2,7 +2,7 @@ import cv2, imutils, time
 from cv2 import aruco
 import numpy
 
-camera = cv2.VideoCapture(1)
+camera = cv2.VideoCapture(0)
 time.sleep(0.25)
 
 dictionary = aruco.getPredefinedDictionary(aruco.DICT_6X6_250)
@@ -28,7 +28,7 @@ while True:
     if (ids is not None) and len(ids) > 0:
         aruco.drawDetectedMarkers(frame_copy, corners, ids)
 
-        rvecs, tvecs = aruco.estimatePoseSingleMarkers(corners, 35.5, camera_matrix, dist_coeffs)
+        rvecs, tvecs, _ = aruco.estimatePoseSingleMarkers(corners, 34.0, camera_matrix, dist_coeffs)
 
         for i in range(len(ids)):
             aruco.drawAxis(frame_copy, camera_matrix, dist_coeffs, rvecs[i], tvecs[i], 20.0)

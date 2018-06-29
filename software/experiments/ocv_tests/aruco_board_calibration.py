@@ -6,7 +6,7 @@ import numpy
 calibrated = False
 calibration_file = 'calibration.npz'
 
-camera = cv2.VideoCapture(1)
+camera = cv2.VideoCapture(0)
 time.sleep(0.25)
 
 dictionary = aruco.getPredefinedDictionary(aruco.DICT_6X6_250)

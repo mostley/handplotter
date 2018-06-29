@@ -22,6 +22,8 @@ import org.opencv.core.Core
 import org.opencv.core.CvType
 import org.opencv.imgproc.Imgproc
 
+import org.opencv.aruco.Aruco
+import org.opencv.aruco.Dictionary
 
 class SessionActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewListener2 {
     private var fullscreenContent: ConstraintLayout? = null
@@ -52,9 +54,13 @@ class SessionActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewLi
     private val itemSwitchCamera: MenuItem? = null
 
     // These variables are used (at the moment) to fix camera orientation from 270degree to 0degree
-    var rgba: Mat? = null
-    var rgbaF: Mat? = null
-    var rgbaT: Mat? = null
+    private var rgba: Mat? = null
+    private var rgbaF: Mat? = null
+    private var rgbaT: Mat? = null
+
+    private var markerIds: Mat? = null
+    private var dictionary: Dictionary? = null
+    private var corners: List<Mat> = ArrayList()
 
     private val loaderCallback = object : BaseLoaderCallback(this) {
         override fun onManagerConnected(status: Int) {
@@ -62,6 +68,9 @@ class SessionActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewLi
                 LoaderCallbackInterface.SUCCESS -> {
                     Log.i(TAG, "OpenCV loaded successfully")
                     openCvCameraView!!.enableView()
+
+                    dictionary = Aruco.getPredefinedDictionary(Aruco.DICT_6X6_250);
+                    markerIds = Mat()
                 }
                 else -> {
                     super.onManagerConnected(status)
@@ -157,17 +166,29 @@ class SessionActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewLi
     }
 
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame?): Mat {
-        rgba = inputFrame!!.rgba();
+        //rgba = inputFrame!!.rgba()
 
-        if (resources.configuration.orientation == ORIENTATION_PORTRAIT) {
-            // Rotate rgba 90 degrees
-            Core.transpose(rgba, rgbaT);
-            Imgproc.resize(rgbaT, rgbaF, rgbaF!!.size(), 0.0, 0.0, 0);
-            Core.flip(rgbaF, rgba, 1);
+        val inputImage: Mat = inputFrame!!.gray()
+
+        Aruco.detectMarkers(inputImage, dictionary, corners, markerIds)
+
+        Aruco.drawDetectedMarkers(inputImage, corners)
+
+        if (windowManager.defaultDisplay.rotation == Surface.ROTATION_0) {
+            Core.transpose(inputImage, rgbaT)
+            Imgproc.resize(rgbaT, rgbaF, inputImage.size(), 0.0, 0.0, 0)
+            Core.flip(rgbaF, inputImage, 1)
+        } else if (windowManager.defaultDisplay.rotation == Surface.ROTATION_270) {
+            Imgproc.resize(inputImage, rgbaF, inputImage.size(), 0.0, 0.0, 0)
+            Core.flip(rgbaF, inputImage, -1)
+        } else if (windowManager.defaultDisplay.rotation == Surface.ROTATION_90) {
+            Imgproc.resize(inputImage, rgbaF, inputImage.size(), 0.0, 0.0, 0)
+            Core.flip(rgbaF, inputImage, 1)
         }
 
-        return rgba!!;
+        return inputImage;
     }
+
 
     companion object {
         /**
