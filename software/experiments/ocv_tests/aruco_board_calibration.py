@@ -6,15 +6,17 @@ import numpy
 calibrated = False
 calibration_file = 'calibration.npz'
 
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(2)
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 time.sleep(0.25)
 
 dictionary = aruco.getPredefinedDictionary(aruco.DICT_6X6_250)
 board = aruco.CharucoBoard_create(
                 squaresX = 5,
                 squaresY = 7,
-                squareLength = 0.04,
-                markerLength = 0.02,
+                squareLength = 0.037,
+                markerLength = 0.0185,
                 dictionary = dictionary)
 calibration_flags = None  # ???
 
